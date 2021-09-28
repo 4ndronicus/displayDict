@@ -42,7 +42,7 @@ None. :)
 ```
 #!/usr/bin/python3
 
-import displayDict
+from displayDict import *
 
 myList = [
         {
@@ -64,13 +64,13 @@ myList = [
 
 fields = ["fruit","description"]
 
-displayDict.showDict().show(myList,fields)
+showDict().show(myList,fields)
 ```
 Or, if you want to reuse it, create an object from it and then call the 'show' function:
 ```
 #!/usr/bin/python3
 
-import displayDict
+from displayDict import *
 
 myList = [
         {
@@ -92,9 +92,9 @@ myList = [
 
 fields = ["fruit","description"]
 
-o = displayDict.showDict()
+o = showDict()
 
-# ...... do stuff ......
+# ... do stuff ...
 
 o.show(myList,fields)
 ```

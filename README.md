@@ -66,6 +66,38 @@ fields = ["fruit","description"]
 
 displayDict.showDict().show(myList,fields)
 ```
+Or, if you want to reuse it, create an object from it and then call the 'show' function:
+```
+#!/usr/bin/python3
+
+import displayDict
+
+myList = [
+        {
+            "fruit":"apple",
+            "description":"red fruit",
+            "shipped_from":"Utah"
+        },
+        {
+            "fruit":"banana",
+            "description":"yellow fruit",
+            "shipped_from":"Hawaii"
+        },
+        {
+            "fruit":"blueberry",
+            "description":"blue fruit",
+            "shipped_from":"Florida"
+        }
+    ]
+
+fields = ["fruit","description"]
+
+o = displayDict.showDict()
+
+# ...... do stuff ......
+
+o.show(myList,fields)
+```
 Output:
 ```
 ----------------------------

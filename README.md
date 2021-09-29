@@ -29,7 +29,7 @@ This class can be used to display a list of dictionaries.  Why is it called "dis
 This class can output the values as found in the results of a "scan" operation on a dynamodb table.
 
 ## Known Issues ##
-1. I just discovered that this class cannot yet work with integer values, so it's string values only for now until I fix that.
+1. Does not handle values that are dictionaries. No plans to fix this.
 
 ## Required Modules ##
 None. :)

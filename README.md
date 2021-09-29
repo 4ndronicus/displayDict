@@ -32,7 +32,7 @@ This class can be used to display a list of dictionaries.  Why is it called "dis
 This class can output the values as found in the results of a "scan" operation on a dynamodb table.
 
 ## Known Issues ##
-1. The data is a list of dictionaries.  In each dictionary is a set of key/value pairs.  This module does not handle values that are dictionaries.  String, boolean, and integer values are supported.
+1. The data is a list of dictionaries.  In each dictionary is a set of key/value pairs.  If the value is a list, the values in the list must be of type string, integer, or boolean.  Additional levels of lists and dictionaries are not supported.
 
 ## Required Modules ##
 None. :)
@@ -53,7 +53,9 @@ myList = [
             "description":"red fruit",
             "shipped_from":"Utah",
             "isGMO":True,
-            "shipVia":["USPS","FEDEX"],
+            "shipVia":["FEDEX"],
+            "codes":[2,8],
+            "cust":[True,False],
             "quantity":400
         },
         {
@@ -62,6 +64,8 @@ myList = [
             "shipped_from":"Hawaii",
             "isGMO":False,
             "shipVia":["FEDEX","UPS"],
+            "codes":[981,94],
+            "cust":[False,True,False],
             "quantity":1100
         },
         {
@@ -70,11 +74,13 @@ myList = [
             "shipped_from":"Florida",
             "isGMO":False,
             "shipVia":["USPS","FEDEX","UPS"],
+            "codes":[399,8484],
+            "cust":[True],
             "quantity":4000
         }
     ]
 
-fields = ["fruit","quantity","isGMO","shipVia"]
+fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
 
 showDict().show(myList,fields)
 ```
@@ -90,7 +96,9 @@ myList = [
             "description":"red fruit",
             "shipped_from":"Utah",
             "isGMO":True,
-            "shipVia":["USPS","FEDEX"],
+            "shipVia":["FEDEX"],
+            "codes":[2,8],
+            "cust":[True,False],
             "quantity":400
         },
         {
@@ -99,6 +107,8 @@ myList = [
             "shipped_from":"Hawaii",
             "isGMO":False,
             "shipVia":["FEDEX","UPS"],
+            "codes":[981,94],
+            "cust":[False,True,False],
             "quantity":1100
         },
         {
@@ -107,13 +117,13 @@ myList = [
             "shipped_from":"Florida",
             "isGMO":False,
             "shipVia":["USPS","FEDEX","UPS"],
+            "codes":[399,8484],
+            "cust":[True],
             "quantity":4000
         }
     ]
 
-fields = ["fruit","quantity","isGMO","shipVia"]
-
-fields = ["fruit","quantity","isGMO"]
+fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
 
 o = showDict()
 
@@ -123,11 +133,11 @@ o.show(myList,fields)
 ```
 Output:
 ```
--------------------------------------------------
-| fruit     | quantity | isGMO | shipVia        |
--------------------------------------------------
-| apple     | 400      | True  | USPS,FEDEX     |
-| banana    | 1100     | False | FEDEX,UPS      |
-| blueberry | 4000     | False | USPS,FEDEX,UPS |
--------------------------------------------------
+-------------------------------------------------------------------------------
+| fruit     | quantity | isGMO | shipVia        | cust             | codes    |
+-------------------------------------------------------------------------------
+| apple     | 400      | True  | FEDEX          | True,False       | 2,8      |
+| banana    | 1100     | False | FEDEX,UPS      | False,True,False | 981,94   |
+| blueberry | 4000     | False | USPS,FEDEX,UPS | True             | 399,8484 |
+-------------------------------------------------------------------------------
 ```

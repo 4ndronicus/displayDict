@@ -7,19 +7,19 @@ Prints the specified fields out of the list of dictionaries that is passed in.
 [
   {
     "<field_one>":"some string",
-    "<field_two>":"some string",
-    "<field_three>":"some string",
+    "<field_two>":<boolean>,
+    "<field_three>":<int>
   },
   {
     "<field_one>":"some string",
-    "<field_two>":"some string",
-    "<field_three>":"some string",
+    "<field_two>":<boolean>,
+    "<field_three>":<int>
   },
   {
     "<field_one>":"some string",
-    "<field_two>":"some string",
-    "<field_three>":"some string",
-  },
+    "<field_two>":<boolean>,
+    "<field_three>":<int>
+  }
 ]
 ```
 Notice that all of the field names in each record are the same.
@@ -29,7 +29,7 @@ This class can be used to display a list of dictionaries.  Why is it called "dis
 This class can output the values as found in the results of a "scan" operation on a dynamodb table.
 
 ## Known Issues ##
-1. Does not handle values that are dictionaries. No plans to fix this.
+1. The data is a list of dictionaries.  In each dictionary is a set of key/value pairs.  This module does not handle values that are dictionaries.  String, boolean, and integer values are supported.
 
 ## Required Modules ##
 None. :)
@@ -42,27 +42,33 @@ None. :)
 ```
 #!/usr/bin/python3
 
-from displayDict import *
+from modules.displayDict import *
 
 myList = [
         {
             "fruit":"apple",
             "description":"red fruit",
-            "shipped_from":"Utah"
+            "shipped_from":"Utah",
+            "isGMO":True,
+            "quantity":400
         },
         {
             "fruit":"banana",
             "description":"yellow fruit",
-            "shipped_from":"Hawaii"
+            "shipped_from":"Hawaii",
+            "isGMO":False,
+            "quantity":1100
         },
         {
             "fruit":"blueberry",
             "description":"blue fruit",
-            "shipped_from":"Florida"
+            "shipped_from":"Florida",
+            "isGMO":False,
+            "quantity":4000
         }
     ]
 
-fields = ["fruit","description"]
+fields = ["fruit","quantity","isGMO"]
 
 showDict().show(myList,fields)
 ```
@@ -70,27 +76,33 @@ Or, if you want to reuse it, create an object from it and then call the 'show' f
 ```
 #!/usr/bin/python3
 
-from displayDict import *
+from modules.displayDict import *
 
 myList = [
         {
             "fruit":"apple",
             "description":"red fruit",
-            "shipped_from":"Utah"
+            "shipped_from":"Utah",
+            "isGMO":True,
+            "quantity":400
         },
         {
             "fruit":"banana",
             "description":"yellow fruit",
-            "shipped_from":"Hawaii"
+            "shipped_from":"Hawaii",
+            "isGMO":False,
+            "quantity":1100
         },
         {
             "fruit":"blueberry",
             "description":"blue fruit",
-            "shipped_from":"Florida"
+            "shipped_from":"Florida",
+            "isGMO":False,
+            "quantity":4000
         }
     ]
 
-fields = ["fruit","description"]
+fields = ["fruit","quantity","isGMO"]
 
 o = showDict()
 
@@ -100,11 +112,11 @@ o.show(myList,fields)
 ```
 Output:
 ```
-----------------------------
-| fruit     | description  |
-----------------------------
-| apple     | red fruit    |
-| banana    | yellow fruit |
-| blueberry | blue fruit   |
-----------------------------
+--------------------------------
+| fruit     | quantity | isGMO |
+--------------------------------
+| apple     | 400      | True  |
+| banana    | 1100     | False |
+| blueberry | 4000     | False |
+--------------------------------
 ```

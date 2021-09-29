@@ -149,6 +149,13 @@ class showDict:
         for i in range(len(fieldList)):
             sizeCt[fieldList[i]]=0
 
+        # Go through each of the dictionaries - convert values to strings
+        for i in range(len(inDict)):
+            for field in fieldList:
+                if type(inDict[i][field]) in [bool,int]:
+                    inDict[i][field] = str(inDict[i][field])
+
+
 	# Calculate the longest value of each requested field
         for rec in inDict:
             for field in fieldList:

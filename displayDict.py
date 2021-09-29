@@ -10,29 +10,37 @@
 #
 # Usage Example:
 #
-# import displayDict as displayDict
+#!/usr/bin/python3
+# 
+# from modules.displayDict import *
 # 
 # myList = [
 #         {
 #             "fruit":"apple",
 #             "description":"red fruit",
-#             "shipped_from":"Utah"
+#             "shipped_from":"Utah",
+#             "isGMO":True,
+#             "quantity":400
 #         },
 #         {
 #             "fruit":"banana",
 #             "description":"yellow fruit",
-#             "shipped_from":"Hawaii"
+#             "shipped_from":"Hawaii",
+#             "isGMO":False,
+#             "quantity":1100
 #         },
 #         {
 #             "fruit":"blueberry",
 #             "description":"blue fruit",
-#             "shipped_from":"Florida"
+#             "shipped_from":"Florida",
+#             "isGMO":False,
+#             "quantity":4000
 #         }
 #     ]
 # 
-# fields = ["fruit","description"]
+# fields = ["fruit","quantity","isGMO"]
 # 
-# displayDict.showDict().show(myList,fields)
+# showDict().show(myList,fields)
 #
 #*******************************************************************************
 class showDict:
@@ -154,6 +162,9 @@ class showDict:
             for field in fieldList:
                 if type(inDict[i][field]) in [bool,int]:
                     inDict[i][field] = str(inDict[i][field])
+                elif type(inDict[i][field]) in [list]:
+                    inDict[i][field] = ','.join(inDict[i][field])
+
 
 
 	# Calculate the longest value of each requested field

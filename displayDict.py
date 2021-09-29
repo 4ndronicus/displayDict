@@ -20,6 +20,9 @@
 #             "description":"red fruit",
 #             "shipped_from":"Utah",
 #             "isGMO":True,
+#             "shipVia":["FEDEX"],
+#             "codes":[2,8],
+#             "cust":[True,False],
 #             "quantity":400
 #         },
 #         {
@@ -27,6 +30,9 @@
 #             "description":"yellow fruit",
 #             "shipped_from":"Hawaii",
 #             "isGMO":False,
+#             "shipVia":["FEDEX","UPS"],
+#             "codes":[981,94],
+#             "cust":[False,True,False],
 #             "quantity":1100
 #         },
 #         {
@@ -34,13 +40,25 @@
 #             "description":"blue fruit",
 #             "shipped_from":"Florida",
 #             "isGMO":False,
+#             "shipVia":["USPS","FEDEX","UPS"],
+#             "codes":[399,8484],
+#             "cust":[True],
 #             "quantity":4000
 #         }
 #     ]
 # 
-# fields = ["fruit","quantity","isGMO"]
+# fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
 # 
 # showDict().show(myList,fields)
+#
+# Output:
+# -------------------------------------------------------------------------------
+# | fruit     | quantity | isGMO | shipVia        | cust             | codes    |
+# -------------------------------------------------------------------------------
+# | apple     | 400      | True  | FEDEX          | True,False       | 2,8      |
+# | banana    | 1100     | False | FEDEX,UPS      | False,True,False | 981,94   |
+# | blueberry | 4000     | False | USPS,FEDEX,UPS | True             | 399,8484 |
+# -------------------------------------------------------------------------------
 #
 #*******************************************************************************
 class showDict:
@@ -163,6 +181,8 @@ class showDict:
                 if type(inDict[i][field]) in [bool,int]:
                     inDict[i][field] = str(inDict[i][field])
                 elif type(inDict[i][field]) in [list]:
+                    for j in range(len(inDict[i][field])):
+                        inDict[i][field][j] = str(inDict[i][field][j])
                     inDict[i][field] = ','.join(inDict[i][field])
 
 

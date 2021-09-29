@@ -8,17 +8,20 @@ Prints the specified fields out of the list of dictionaries that is passed in.
   {
     "<field_one>":"some string",
     "<field_two>":<boolean>,
-    "<field_three>":<int>
+    "<field_three>":<int>,
+    "<field_four>":<list>
   },
   {
     "<field_one>":"some string",
     "<field_two>":<boolean>,
-    "<field_three>":<int>
+    "<field_three>":<int>,
+    "<field_four>":<list>
   },
   {
     "<field_one>":"some string",
     "<field_two>":<boolean>,
-    "<field_three>":<int>
+    "<field_three>":<int>,
+    "<field_four>":<list>
   }
 ]
 ```
@@ -50,6 +53,7 @@ myList = [
             "description":"red fruit",
             "shipped_from":"Utah",
             "isGMO":True,
+            "shipVia":["USPS","FEDEX"],
             "quantity":400
         },
         {
@@ -57,6 +61,7 @@ myList = [
             "description":"yellow fruit",
             "shipped_from":"Hawaii",
             "isGMO":False,
+            "shipVia":["FEDEX","UPS"],
             "quantity":1100
         },
         {
@@ -64,11 +69,12 @@ myList = [
             "description":"blue fruit",
             "shipped_from":"Florida",
             "isGMO":False,
+            "shipVia":["USPS","FEDEX","UPS"],
             "quantity":4000
         }
     ]
 
-fields = ["fruit","quantity","isGMO"]
+fields = ["fruit","quantity","isGMO","shipVia"]
 
 showDict().show(myList,fields)
 ```
@@ -84,6 +90,7 @@ myList = [
             "description":"red fruit",
             "shipped_from":"Utah",
             "isGMO":True,
+            "shipVia":["USPS","FEDEX"],
             "quantity":400
         },
         {
@@ -91,6 +98,7 @@ myList = [
             "description":"yellow fruit",
             "shipped_from":"Hawaii",
             "isGMO":False,
+            "shipVia":["FEDEX","UPS"],
             "quantity":1100
         },
         {
@@ -98,9 +106,12 @@ myList = [
             "description":"blue fruit",
             "shipped_from":"Florida",
             "isGMO":False,
+            "shipVia":["USPS","FEDEX","UPS"],
             "quantity":4000
         }
     ]
+
+fields = ["fruit","quantity","isGMO","shipVia"]
 
 fields = ["fruit","quantity","isGMO"]
 
@@ -112,11 +123,11 @@ o.show(myList,fields)
 ```
 Output:
 ```
---------------------------------
-| fruit     | quantity | isGMO |
---------------------------------
-| apple     | 400      | True  |
-| banana    | 1100     | False |
-| blueberry | 4000     | False |
---------------------------------
+-------------------------------------------------
+| fruit     | quantity | isGMO | shipVia        |
+-------------------------------------------------
+| apple     | 400      | True  | USPS,FEDEX     |
+| banana    | 1100     | False | FEDEX,UPS      |
+| blueberry | 4000     | False | USPS,FEDEX,UPS |
+-------------------------------------------------
 ```

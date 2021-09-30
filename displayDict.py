@@ -167,9 +167,15 @@ class showDict:
 # Returns: None
 # Usage Example: (See class usage example at the top)
 #*******************************************************************************
-    def show(me,inDict,fieldList):
+    def show(me,inDict,fieldList='all'):
 
         sizeCt = {}
+
+        # If we have defaulted to all keys, add them from the dictionary
+        if fieldList == 'all':
+            fieldList = []
+            for key in inDict[0]:
+                fieldList.append(key)
 
 	# Initialize the line length tracker
         for i in range(len(fieldList)):

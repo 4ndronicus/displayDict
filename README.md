@@ -42,7 +42,7 @@ None. :)
 ```
 from displayDict import *
 ```
-1. Populate your list of dictionaries
+2. Populate your list of dictionaries
 ```
 myList = [
         {
@@ -77,21 +77,21 @@ myList = [
         }
     ]
 ```
-1. Define your fields if you wish
+3. Define your fields if you wish
 ```
 fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
 ```
-1. Call the 'show' function either statically like this
+4. Call the 'show' function either statically like this
 
 ```
 showDict().show(myList,fields)
 ```
-Or, if you want to reuse it, create an object from it and then call the 'show' function:
+    Or, if you want to reuse it, create an object from it and then call the 'show' function:
 ```
 o = showDict()
 o.show(myList,fields)
 ```
-
+###Example###
 ````
 #!/usr/bin/python3
 

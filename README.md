@@ -102,7 +102,7 @@ o.show(myList)
 ```
 ### Examples ###
 Example 1 - Specify fields:
-````
+```
 #!/usr/bin/python3
 
 from modules.displayDict import *

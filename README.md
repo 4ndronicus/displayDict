@@ -1,5 +1,5 @@
 # displayDict
-Prints the specified fields out of the list of dictionaries that is passed in.
+Prints the specified fields out of the list of dictionaries that is passed in.  If no list of specified fields are passed in, it defaults to all fields.
 
 ## Assumptions ##
 1. The list of dictionaries is in the format:
@@ -39,14 +39,11 @@ None. :)
 
 ## Usage ##
 1. Import the module.
-1. Populate your list of dictionaries
-1. Call the 'show' function
-
 ```
-#!/usr/bin/python3
-
-from modules.displayDict import *
-
+from displayDict import *
+```
+1. Populate your list of dictionaries
+```
 myList = [
         {
             "fruit":"apple",
@@ -79,13 +76,23 @@ myList = [
             "quantity":4000
         }
     ]
-
+```
+1. Define your fields if you wish
+```
 fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
+```
+1. Call the 'show' function either statically like this
 
+```
 showDict().show(myList,fields)
 ```
 Or, if you want to reuse it, create an object from it and then call the 'show' function:
 ```
+o = showDict()
+o.show(myList,fields)
+```
+
+````
 #!/usr/bin/python3
 
 from modules.displayDict import *

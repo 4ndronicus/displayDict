@@ -100,7 +100,7 @@ o.show(myList,fields)
 # Print all fields
 o.show(myList)
 ```
-###Examples###
+### Examples ###
 Example 1 - Specify fields:
 ````
 #!/usr/bin/python3

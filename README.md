@@ -84,14 +84,24 @@ fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
 4. Call the 'show' function either statically like this
 
 ```
+# Specify a list of fields
 showDict().show(myList,fields)
+
+# Print all fields
+showDict().show(myList)
 ```
-    Or, if you want to reuse it, create an object from it and then call the 'show' function:
+  Or, if you want to reuse it, create an object from it and then call the 'show' function:
 ```
 o = showDict()
+
+# Specify a list of fields
 o.show(myList,fields)
+
+# Print all fields
+o.show(myList)
 ```
-###Example###
+###Examples###
+Example 1 - Specify fields:
 ````
 #!/usr/bin/python3
 
@@ -147,4 +157,59 @@ Output:
 | banana    | 1100     | False | FEDEX,UPS      | False,True,False | 981,94   |
 | blueberry | 4000     | False | USPS,FEDEX,UPS | True             | 399,8484 |
 -------------------------------------------------------------------------------
+```
+Example 2 - Print all fields
+```
+#!/usr/bin/python3
+
+from modules.displayDict import *
+
+myList = [
+        {
+            "fruit":"apple",
+            "description":"red fruit",
+            "shipped_from":"Utah",
+            "isGMO":True,
+            "shipVia":["FEDEX"],
+            "codes":[2,8],
+            "cust":[True,False],
+            "quantity":400
+        },
+        {
+            "fruit":"banana",
+            "description":"yellow fruit",
+            "shipped_from":"Hawaii",
+            "isGMO":False,
+            "shipVia":["FEDEX","UPS"],
+            "codes":[981,94],
+            "cust":[False,True,False],
+            "quantity":1100
+        },
+        {
+            "fruit":"blueberry",
+            "description":"blue fruit",
+            "shipped_from":"Florida",
+            "isGMO":False,
+            "shipVia":["USPS","FEDEX","UPS"],
+            "codes":[399,8484],
+            "cust":[True],
+            "quantity":4000
+        }
+    ]
+
+o = showDict()
+
+# ... do stuff ...
+
+o.show(myList)
+```
+Output:
+```
+-------------------------------------------------------------------------------------------------------------
+| fruit     | description  | shipped_from | isGMO | shipVia        | codes    | cust             | quantity |
+-------------------------------------------------------------------------------------------------------------
+| apple     | red fruit    | Utah         | True  | FEDEX          | 2,8      | True,False       | 400      |
+| banana    | yellow fruit | Hawaii       | False | FEDEX,UPS      | 981,94   | False,True,False | 1100     |
+| blueberry | blue fruit   | Florida      | False | USPS,FEDEX,UPS | 399,8484 | True             | 4000     |
+-------------------------------------------------------------------------------------------------------------
 ```

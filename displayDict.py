@@ -6,6 +6,18 @@
 # Description: This class receives a list of dictionaries and prints the
 #   specified fields from out of those dictionaries
 #
+#-------------------------------------------------------------------------------
+#   WARNING
+#-------------------------------------------------------------------------------
+# Python passes the incoming list of dictionaries by reference and not by value.
+# This is a problem because this class changes all elements to type 'string'.
+# This means that when the 'show' function returns, inside the calling function,
+# the list of dictionaries will be changed. Because of this, it is recommended
+# to use the 'deepcopy' (from copy import deepcopy) function to make a copy of
+# the list of dictionaries that you want to display, and pass the copy into the
+# 'show' function. You don't need to do this if all elements are of type
+# 'string'.
+#-------------------------------------------------------------------------------
 # Required imports: None
 #
 # Usage Example:

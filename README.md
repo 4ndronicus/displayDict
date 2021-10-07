@@ -36,11 +36,12 @@ This class can output the values as found in the results of a "scan" operation o
 * Python passes the incoming list of dictionaries by reference and not by value. This class changes all item values in each dictionary to type 'string'. This means that when the 'show' function returns, inside the calling function, the list of dictionaries may be changed. Because of this, it is recommended to use the 'deepcopy' (from copy import deepcopy) function to make a copy of the list of dictionaries that you want to display, and pass the copy into the 'show' function. You don't need to do this if all item values are of type 'string'. In other words, the 'show' function may change the list.  If you're worried about that, use 'deepcopy' to make a copy of the list and pass in the copy.
 
 ## Imports needed ##
+If you need to copy the original list and work on the copy (see "Known Issues," above), import 'deepcopy' from the copy module.
 ```
 from copy import deepcopy
 ```
 ## Usage ##
-1. Import the module.
+1. Import the displayDict module.
 ```
 from displayDict import *
 ```

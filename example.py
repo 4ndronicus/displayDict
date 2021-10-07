@@ -48,11 +48,11 @@ listCopy = deepcopy(myList)
 print("With only selected fields:")
 o.show(listCopy,fields)
 
-print("With all fields")
+print("\nWith all fields:")
 o.show(listCopy)
 
-print("Original list of dictionaries:")
+print("\nOriginal list of dictionaries:")
 print(myList)
 
-print("Copy of list of dictionaries:")
+print("\nCopy of list of dictionaries:")
 print(listCopy)

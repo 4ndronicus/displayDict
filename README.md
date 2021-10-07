@@ -35,9 +35,10 @@ This class can output the values as found in the results of a "scan" operation o
 * The data is a list of dictionaries.  In each dictionary is a set of key/value pairs.  If the value is a list, the values in the list must be of type string, integer, or boolean.  Additional levels of lists and dictionaries are not supported.
 * Python passes the incoming list of dictionaries by reference and not by value. This is a problem because this class changes all item values in each dictionary to type 'string'. This means that when the 'show' function returns, inside the calling function, the list of dictionaries will be changed. Because of this, it is recommended to use the 'deepcopy' (from copy import deepcopy) function to make a copy of the list of dictionaries that you want to display, and pass the copy into the 'show' function. You don't need to do this if all item values are of type 'string'.
 
-## Required Modules ##
-None. :)
-
+## Imports needed ##
+```
+from copy import deepcopy
+```
 ## Usage ##
 1. Import the module.
 ```
@@ -82,24 +83,28 @@ myList = [
 ```
 fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
 ```
+1. Make a copy of the dictionary if you need to
+```
+listCopy = deepcopy(myList)
+```
 4. Call the 'show' function either statically like this
 
 ```
 # Specify a list of fields
-showDict().show(myList,fields)
+showDict().show(listCopy,fields)
 
 # Print all fields
-showDict().show(myList)
+showDict().show(listCopy)
 ```
   Or, if you want to reuse it, create an object from it and then call the 'show' function:
 ```
 o = showDict()
 
 # Specify a list of fields
-o.show(myList,fields)
+o.show(listCopy,fields)
 
 # Print all fields
-o.show(myList)
+o.show(listCopy)
 ```
 ### Examples ###
 Example 1 - Specify fields:
@@ -107,6 +112,7 @@ Example 1 - Specify fields:
 #!/usr/bin/python3
 
 from modules.displayDict import *
+from copy import deepcopy
 
 myList = [
         {
@@ -147,10 +153,24 @@ o = showDict()
 
 # ... do stuff ...
 
-o.show(myList,fields)
+# Necessary because values of dictionary items are not all strings
+listCopy = deepcopy(myList)
+
+print("With only selected fields:")
+o.show(listCopy,fields)
+
+print("With all fields")
+o.show(listCopy)
+
+print("Original list of dictionaries:")
+print(myList)
+
+print("Copy of list of dictionaries:")
+print(listCopy)
 ```
 Output:
 ```
+With only selected fields:
 -------------------------------------------------------------------------------
 | fruit     | quantity | isGMO | shipVia        | cust             | codes    |
 -------------------------------------------------------------------------------
@@ -158,54 +178,7 @@ Output:
 | banana    | 1100     | False | FEDEX,UPS      | False,True,False | 981,94   |
 | blueberry | 4000     | False | USPS,FEDEX,UPS | True             | 399,8484 |
 -------------------------------------------------------------------------------
-```
-Example 2 - Print all fields
-```
-#!/usr/bin/python3
-
-from modules.displayDict import *
-
-myList = [
-        {
-            "fruit":"apple",
-            "description":"red fruit",
-            "shipped_from":"Utah",
-            "isGMO":True,
-            "shipVia":["FEDEX"],
-            "codes":[2,8],
-            "cust":[True,False],
-            "quantity":400
-        },
-        {
-            "fruit":"banana",
-            "description":"yellow fruit",
-            "shipped_from":"Hawaii",
-            "isGMO":False,
-            "shipVia":["FEDEX","UPS"],
-            "codes":[981,94],
-            "cust":[False,True,False],
-            "quantity":1100
-        },
-        {
-            "fruit":"blueberry",
-            "description":"blue fruit",
-            "shipped_from":"Florida",
-            "isGMO":False,
-            "shipVia":["USPS","FEDEX","UPS"],
-            "codes":[399,8484],
-            "cust":[True],
-            "quantity":4000
-        }
-    ]
-
-o = showDict()
-
-# ... do stuff ...
-
-o.show(myList)
-```
-Output:
-```
+With all fields
 -------------------------------------------------------------------------------------------------------------
 | fruit     | description  | shipped_from | isGMO | shipVia        | codes    | cust             | quantity |
 -------------------------------------------------------------------------------------------------------------
@@ -213,4 +186,10 @@ Output:
 | banana    | yellow fruit | Hawaii       | False | FEDEX,UPS      | 981,94   | False,True,False | 1100     |
 | blueberry | blue fruit   | Florida      | False | USPS,FEDEX,UPS | 399,8484 | True             | 4000     |
 -------------------------------------------------------------------------------------------------------------
+Original list of dictionaries:
+[{'fruit': 'apple', 'description': 'red fruit', 'shipped_from': 'Utah', 'isGMO': True, 'shipVia': ['FEDEX'], 'codes': [2, 8], 'cust': [True, False], 'quantity': 400}, {'fruit': 'banana', 'description': 'yellow fruit', 'shipped_from': 'Hawaii', 'isGMO': False, 'shipVia': ['FEDEX', 'UPS'], 'codes': [981, 94], 'cust': [False, True, False], 'quantity': 1100}, {'fruit': 'blueberry', 'description': 'blue fruit', 'shipped_from': 'Florida', 'isGMO': False, 'shipVia': ['USPS', 'FEDEX', 'UPS'], 'codes': [399, 8484], 'cust': [True], 'quantity': 4000}]
+Copy of list of dictionaries:
+[{'fruit': 'apple', 'description': 'red fruit', 'shipped_from': 'Utah', 'isGMO': 'True', 'shipVia': 'FEDEX', 'codes': '2,8', 'cust': 'True,False', 'quantity': '400'}, {'fruit': 'banana', 'description': 'yellow fruit', 'shipped_from': 'Hawaii', 'isGMO': 'False', 'shipVia': 'FEDEX,UPS', 'codes': '981,94', 'cust': 'False,True,False', 'quantity': '1100'}, {'fruit': 'blueberry', 'description': 'blue fruit', 'shipped_from': 'Florida', 'isGMO': 'False', 'shipVia': 'USPS,FEDEX,UPS', 'codes': '399,8484', 'cust': 'True', 'quantity': '4000'}]
 ```
+Notice that the values in the items in the dictionaries in the original list that are not strings retain their type.
+In the copy of the list, all values in all items in the dictionaries have been changed to the string type.

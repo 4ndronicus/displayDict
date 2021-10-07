@@ -1,8 +1,8 @@
 # displayDict
-Prints the specified fields out of the list of dictionaries that is passed in.  If no list of specified fields are passed in, it defaults to all fields.
+Prints the specified fields out of the list of dictionaries that is passed in.  If a list of desired fields is not passed in, the class will just display all of the fields.
 
 ## Assumptions ##
-1. The list of dictionaries is in the format:
+* The list of dictionaries is in the format:
 ```
 [
   {
@@ -25,7 +25,7 @@ Prints the specified fields out of the list of dictionaries that is passed in.  
   }
 ]
 ```
-1. All of the field names in each record are the same.
+* All of the field names in each record are the same.
 
 ## Use Case ##
 This class can be used to display a list of dictionaries.  Why is it called "displayDict" then?  Because I don't feel like fixing it. :)
@@ -83,11 +83,11 @@ myList = [
 ```
 fields = ["fruit","quantity","isGMO","shipVia","cust","codes"]
 ```
-1. Make a copy of the dictionary if you need to
+4. Make a copy of the dictionary if you need to (see "Known Issues," above)
 ```
 listCopy = deepcopy(myList)
 ```
-4. Call the 'show' function either statically like this
+5. Call the 'show' function either statically like this
 
 ```
 # Specify a list of fields
@@ -167,7 +167,7 @@ print(myList)
 print("\nCopy of list of dictionaries:")
 print(listCopy)
 ```
-Output:
+Output
 ```
 With only selected fields:
 -------------------------------------------------------------------------------

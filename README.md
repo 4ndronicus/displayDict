@@ -25,14 +25,15 @@ Prints the specified fields out of the list of dictionaries that is passed in.  
   }
 ]
 ```
-Notice that all of the field names in each record are the same.
+1. All of the field names in each record are the same.
 
 ## Use Case ##
 This class can be used to display a list of dictionaries.  Why is it called "displayDict" then?  Because I don't feel like fixing it. :)
 This class can output the values as found in the results of a "scan" operation on a dynamodb table.
 
 ## Known Issues ##
-1. The data is a list of dictionaries.  In each dictionary is a set of key/value pairs.  If the value is a list, the values in the list must be of type string, integer, or boolean.  Additional levels of lists and dictionaries are not supported.
+* The data is a list of dictionaries.  In each dictionary is a set of key/value pairs.  If the value is a list, the values in the list must be of type string, integer, or boolean.  Additional levels of lists and dictionaries are not supported.
+* Python passes the incoming list of dictionaries by reference and not by value. This is a problem because this class changes all item values in each dictionary to type 'string'. This means that when the 'show' function returns, inside the calling function, the list of dictionaries will be changed. Because of this, it is recommended to use the 'deepcopy' (from copy import deepcopy) function to make a copy of the list of dictionaries that you want to display, and pass the copy into the 'show' function. You don't need to do this if all item values are of type 'string'.
 
 ## Required Modules ##
 None. :)

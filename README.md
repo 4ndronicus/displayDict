@@ -33,7 +33,7 @@ This class can output the values as found in the results of a "scan" operation o
 
 ## Known Issues ##
 * The data is a list of dictionaries.  In each dictionary is a set of key/value pairs.  If the value is a list, the values in the list must be of type string, integer, or boolean.  Additional levels of lists and dictionaries are not supported.
-* Python passes the incoming list of dictionaries by reference and not by value. This is a problem because this class changes all item values in each dictionary to type 'string'. This means that when the 'show' function returns, inside the calling function, the list of dictionaries will be changed. Because of this, it is recommended to use the 'deepcopy' (from copy import deepcopy) function to make a copy of the list of dictionaries that you want to display, and pass the copy into the 'show' function. You don't need to do this if all item values are of type 'string'.
+* Python passes the incoming list of dictionaries by reference and not by value. This class changes all item values in each dictionary to type 'string'. This means that when the 'show' function returns, inside the calling function, the list of dictionaries may be changed. Because of this, it is recommended to use the 'deepcopy' (from copy import deepcopy) function to make a copy of the list of dictionaries that you want to display, and pass the copy into the 'show' function. You don't need to do this if all item values are of type 'string'. In other words, the 'show' function may change the list.  If you're worried about that, use 'deepcopy' to make a copy of the list and pass in the copy.
 
 ## Imports needed ##
 ```
@@ -193,3 +193,4 @@ Original list of dictionaries:
 Copy of list of dictionaries:
 [{'fruit': 'apple', 'description': 'red fruit', 'shipped_from': 'Utah', 'isGMO': 'True', 'shipVia': 'FEDEX', 'codes': '2,8', 'cust': 'True,False', 'quantity': '400'}, {'fruit': 'banana', 'description': 'yellow fruit', 'shipped_from': 'Hawaii', 'isGMO': 'False', 'shipVia': 'FEDEX,UPS', 'codes': '981,94', 'cust': 'False,True,False', 'quantity': '1100'}, {'fruit': 'blueberry', 'description': 'blue fruit', 'shipped_from': 'Florida', 'isGMO': 'False', 'shipVia': 'USPS,FEDEX,UPS', 'codes': '399,8484', 'cust': 'True', 'quantity': '4000'}]
 ```
+Notice that the non-string values in the original list retain their type.  In the copy, everything has been converted to a string type (see "Known Issues," above).
